@@ -2,15 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
-
+public class Projectile : MonoBehaviour
+{
     private BoundsCheck bndCheck;
+    private Renderer rend;
 
-     void Awake()
+    [Header("Set Dynamically")]
+    public Rigidbody rigid;
+    [SerializeField]
+    private WeaponType _type;
+
+    public WeaponType type
+    {
+        get
+        {
+            return (_type);
+        }
+        set
+        {
+            SetType(value);
+        }
+    }
+    // Use this for initialization
+    void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();
+        rend = GetComponent<Renderer>();
+        rigid = GetComponent<Rigidbody>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (bndCheck.offUp)
@@ -19,5 +40,11 @@ public class Projectile : MonoBehaviour {
         }
     }
 
-
+    public void SetType(WeaponType eType)
+    {
+        //set the _type
+        _type = eType;
+        WeaponDefinition def = Main.GetWeaponDefinition(_type);
+        rend.material.color = def.projectileColor;
+    }
 }

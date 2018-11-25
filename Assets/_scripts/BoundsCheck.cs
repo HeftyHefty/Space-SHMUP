@@ -20,7 +20,7 @@ public class BoundsCheck : MonoBehaviour {
         camHeight = Camera.main.orthographicSize;
         camWidth = camHeight * Camera.main.aspect;
     }
-
+    //Update once per frame 
      void LateUpdate()
     {
       Vector3 pos = transform.position;
@@ -56,7 +56,7 @@ public class BoundsCheck : MonoBehaviour {
             transform.position = pos;
             isOnScreen = true;
             offRight = offLeft = offUp = offDown = false;
-
+            //transform.position = pos;
         }
     }
 

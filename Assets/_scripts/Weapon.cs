@@ -1,27 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// This is an enum of the various possible wea[pn ty[es
-/// It also includes a "Shield" type to allow a shoeld power-up
-/// Items marked[NI] below are Not Implemented in the IGDPD book
-/// </summary>
+
 public enum WeaponType
 {
     none, //the default/no weapon
     blaster, //A simple blaster
     spread, //two shots simultaneously
-    phaser, // [NI] Shots that move in waves
-    missile, //[NI] Homing missiles
-    laser, //[NI] Damage pver time
     shield //Raise shield level
 }
-/// <summary>
-/// The weaponDefinition class allows you to set the properties of a specific weapon in the Inspector.
-/// The Main class has an array of WeaponDefinitions that makes this possible
-/// </summary>
+
 [System.Serializable]
 public class WeaponDefinition
+    //lets you set weapon specifics in inspector 
 {
     public WeaponType type = WeaponType.none;
     public string letter;

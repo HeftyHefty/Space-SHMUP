@@ -14,13 +14,11 @@ public class Part
     [HideInInspector]
     public Material mat;
 }
-/// <summary>
-/// Enemy_4 will start offscreen and hten pick a random point on screen to move to.
-/// once it has arrived, it will pick another randompoint and continue until
-/// player has shot it down
-/// </summary>
+
 public class Enemy_4 : Enemy 
 {
+    //Starts offscreen and randomly generates from a point on screen
+    //this only changes if player shoots it down, otherwise constantly picking new spawn point 
     [Header("Set in Inspector: Enemy_4")]
     public Part[] parts;
 
@@ -122,6 +120,7 @@ public class Enemy_4 : Enemy
         GameObject other = coll.gameObject;
         switch(other.tag)
         {
+            //Hero bullet collision with enemy 4 
             case "ProjectileHero":
                 Projectile p = other.GetComponent<Projectile>();
 

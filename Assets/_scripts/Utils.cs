@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour
 {
-    //=======================================Materials Functions ====================================\\
+    //Matterial Functions
     static public Material[] GetAllMaterials (GameObject go)
     {
         Renderer[] rends = go.GetComponentsInChildren<Renderer>();

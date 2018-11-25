@@ -30,7 +30,7 @@ public class PowerUp : MonoBehaviour
         bndCheck = GetComponent<BoundsCheck>();
         cubeRend = cube.GetComponent<Renderer>();
 
-        //Set random velocity
+        //Set a random velocity
         Vector3 vel = Random.onUnitSphere;
 
         vel.z = 0;
@@ -39,9 +39,8 @@ public class PowerUp : MonoBehaviour
         vel *= Random.Range(driftMinMax.x, driftMinMax.y);
         rigid.velocity = vel;
 
-        //Set the rotation of this GameObject to R:[0,0,0]
+        //Sets rotation of this GameObject to R:[0,0,0]
         transform.rotation = Quaternion.identity;
-        //quaterion.id is equal to no rotation
 
         rotPerSecond = new Vector3(Random.Range(rotMinMax.x, rotMinMax.y),
                                      Random.Range(rotMinMax.x, rotMinMax.y),
@@ -55,7 +54,7 @@ public class PowerUp : MonoBehaviour
     {
         cube.transform.rotation = Quaternion.Euler(rotPerSecond * Time.time);
 
-        //fade out the power up over time
+        //power up gets faded-out over time
         float u = (Time.time - (birthTime + lifeTime)) / fadeTime;
 
         if (u >= 1)
@@ -69,28 +68,27 @@ public class PowerUp : MonoBehaviour
             Color c = cubeRend.material.color;
             c.a = 1f - u;
             cubeRend.material.color = c;
-            //fade the letter as well, just not as much
+            //fades letters
             c = letter.color;
             c.a = 1f - (u * 0.5f);
             letter.color = c;
         }
         if (!bndCheck.isOnScreen)
         {
-            //if powerup has left the screen, destroy it
+            //when powerup leaves the bounds it is destroyed
             Destroy(gameObject);
         }
 	}
     public void SetType(WeaponType wt)
     {
         WeaponDefinition def = Main.GetWeaponDefinition(wt);
-        //set color of the cube child
         cubeRend.material.color = def.color;
         letter.text = def.letter;
         type = wt;
     }
     public void AbsorbedBy (GameObject target)
     {
-        //this is called by the hero class whe powerup is collected
+        //called by hero class when powerup collected
         Destroy(this.gameObject);
     }
 }
